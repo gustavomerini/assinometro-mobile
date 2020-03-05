@@ -1,6 +1,8 @@
 import 'LoginPage.dart';
 
-class LoginPresenter {}
+class LoginPresenter {
+
+}
 
 class LoginPresenterImpl implements LoginPresenter {
   LoginView _view;

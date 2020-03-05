@@ -15,7 +15,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> implements HomeView {
-
   @override
   void initState() {
     this.widget.presenter.view = this;
@@ -24,17 +23,32 @@ class _HomePageState extends State<HomePage> implements HomeView {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("Assinometro"),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          this.widget.presenter.onLoginClick(context);
-        },
-        child: Icon(Icons.add),
-      ),
-    );
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints viewportConstraints) {
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                  minWidth: viewportConstraints.maxWidth),
+              child: Column(
+                children: <Widget>[
+                  FloatingActionButton(
+                    onPressed: () {
+                      widget.presenter.onLoginClick(context);
+                    },
+                  ),
+                  Container(
+                    color: Color(0xFFFFFFFF),
+                    height: 500,
+                  ),
+                  Container(
+                    color: Color(0xFF4257B2),
+                    height: 120,
+                  )
+                ],
+              ),
+            ),
+          );
+        });
   }
 
   @override
